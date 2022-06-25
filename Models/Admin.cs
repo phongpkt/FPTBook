@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FPTBook.Models
+namespace FPTLibrary.Models
 {
     public class Admin
     {

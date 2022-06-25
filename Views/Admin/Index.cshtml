@@ -1,0 +1,44 @@
+﻿@model ICollection<FPTLibrary.Models.Admin>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+</head>
+<body>
+   <h1 class="text-success text-center">Admin Profile</h1>
+
+    <div id="admin-profile"> 
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Image</th>
+                <th>Mobile Phone</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                @foreach (var admin in Model)
+               {
+                    <td>@admin.Id</td>
+                    <td>@admin.Name</td>
+                    <td>@admin.Email</td>
+                    <td>
+                        <img src="@admin.Image" width="180" height="250">
+                    </td>
+                    <td>@admin.Mobile</td>
+                    <td>@admin.Password</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@admin.Id">Edit</a>
+                    </td>
+               }
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

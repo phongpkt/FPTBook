@@ -11,6 +11,10 @@
     <Compile Remove="Data\Migrations\20220620094651_firt.Designer.cs" />
     <Compile Remove="Data\Migrations\20220620141044_first.cs" />
     <Compile Remove="Data\Migrations\20220620141044_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220623161052_first.cs" />
+    <Compile Remove="Data\Migrations\20220623161052_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220623161313_first.cs" />
+    <Compile Remove="Data\Migrations\20220623161313_first.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +25,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.25" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Store_Owner\" />
   </ItemGroup>
 
 </Project>

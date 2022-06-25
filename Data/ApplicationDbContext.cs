@@ -1,5 +1,4 @@
-﻿using FPTBook.Models;
-using FPTLibrary.Models;
+﻿using FPTLibrary.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +17,14 @@ namespace FPTLibrary.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Store_Owner> Store_Owners { get; set; }
+        public DbSet<Admin> Admin { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            SeedCategory(builder);
             SeedBook(builder);
+            SeedCategory(builder);
             SeedCustomer(builder);
             SeedAdmin(builder);
             SeedStore_Owner(builder);

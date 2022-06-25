@@ -1,0 +1,52 @@
+﻿@model ICollection<FPTLibrary.Models.Customer>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile</title>
+</head>
+<body>
+   <h1 class="text-success text-center">Customer Profile</h1>
+   <h5>Search customer: </h5>
+        <form id="search" method="get" asp-action="Customer">
+            <input type="search" placeholder="Enter the customer name" value="@ViewData["GetCustomer"]" name="CustomerSearch" style="width: 200px; padding: 5px" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+    <div id="customer-profile"> 
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Image</th>
+                <th>Mobile Phone</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+                @foreach (var Customer in Model)
+               {
+                    <tr>
+                        <td>@Customer.Id</td>
+                        <td>@Customer.FirstName</td>
+                        <td>@Customer.Email</td>
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@Customer.Id">
+                                <img src="@Customer.Image" width="180" height="250">
+                            </a>
+                        </td>
+                        <td>@Customer.Mobile</td>
+                        <td>@Customer.Password</td>
+                        <td>
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Customer.Id">Edit</a>
+                            <a class="btn btn-warning" asp-action="Delete" asp-route-id="@Customer.Id" onclick="    return confirm('Are you sure you want to remove this user?');">Delete</a>
+                        </td>
+                    </tr>
+               }
+            
+        </table>
+    </div>
+</body>
+</html>

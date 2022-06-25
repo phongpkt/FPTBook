@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FPTBook.Models
+namespace FPTLibrary.Models
 {
     public class Store_Owner
     {
-        [Required]
         public int Id { get; set; }
         [Required(ErrorMessage = "This field cannot be empty!")]
         [MinLength(2, ErrorMessage = "The name length must be longer than 2!")]

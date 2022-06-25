@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FPTBook.Models
+namespace FPTLibrary.Models
 {
     public class Customer
     {
@@ -32,6 +32,5 @@ namespace FPTBook.Models
         public string Address { get; set; }
         [Required(ErrorMessage = "This field cannot be empty!")]
         public string Password { get; set; }
-        public ICollection<Order> Orders { get; set; }
     }
 }

@@ -107,7 +107,7 @@ namespace FPTLibrary.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
 
                     b.HasData(
                         new
@@ -182,7 +182,7 @@ namespace FPTLibrary.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store_Owner");
+                    b.ToTable("Store_Owners");
 
                     b.HasData(
                         new
@@ -385,23 +385,6 @@ namespace FPTLibrary.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("FPTLibrary.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -432,21 +415,21 @@ namespace FPTLibrary.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "12cddd64-ef6a-4464-964a-b3ab7fbc7612",
+                            ConcurrencyStamp = "ff0c5a03-2657-4393-94e0-6e7a5131fbe8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "985c2347-71e4-4800-8653-59e427dd028f",
+                            ConcurrencyStamp = "dee035fe-9d10-4018-b7e1-ebce200f2643",
                             Name = "Store Owner",
                             NormalizedName = "STORE OWNER"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "0fbfb8ae-6334-4638-9d4a-39793ec8a2bb",
+                            ConcurrencyStamp = "287d51a5-56e2-4045-abb3-57a59b6d5995",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -632,13 +615,6 @@ namespace FPTLibrary.Data.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FPTLibrary.Models.Order", b =>
-                {
-                    b.HasOne("FPTBook.Models.Customer", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
