@@ -1,5 +1,6 @@
 ﻿using FPTLibrary.Data;
 using FPTLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace FPTLibrary.Controllers
                 .FirstOrDefault(m => m.Id == id);
             return View(book);
         }
-
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Create()
         {
             var category = context.Categories.ToList();
@@ -41,6 +42,7 @@ namespace FPTLibrary.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Create(Book book)
         {
             if (ModelState.IsValid)
@@ -62,7 +64,7 @@ namespace FPTLibrary.Controllers
             ViewBag.Books = book;
             return View();
         }
-
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +78,7 @@ namespace FPTLibrary.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
@@ -87,6 +90,7 @@ namespace FPTLibrary.Controllers
             return View(book);
         }
 
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Delete(int? id)
         {
             if (id == null)

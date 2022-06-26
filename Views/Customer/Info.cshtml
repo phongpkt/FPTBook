@@ -1,0 +1,33 @@
+﻿@model FPTLibrary.Models.Customer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile</title>
+</head>
+<body>
+   <h1 class="text-success text-center">Customer Profile</h1>
+   <br />
+    <div id="customer-profile"> 
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Image</th>
+                <th>Mobile Phone</th>
+            </tr>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.FirstName</td>
+                <td>@Model.Email</td>
+                <td><img src="@Model.Image" width="180" height="250"></td>
+                <td>@Model.Mobile</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

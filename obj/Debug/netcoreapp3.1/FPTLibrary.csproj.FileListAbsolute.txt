@@ -1269,3 +1269,5 @@ C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Areas\Identity
 C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Index.cshtml.g.cs
 C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Views\StoreOwner\Index.cshtml.g.cs
+C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CatRequest.cshtml.g.cs
+C:\Users\PC\source\repos\FPTLibrary\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Info.cshtml.g.cs

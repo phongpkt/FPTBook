@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FPTLibrary.Controllers
 {
@@ -19,7 +20,7 @@ namespace FPTLibrary.Controllers
             var customer = context.Customers.ToList();
             return View(customer);
         }
-        public IActionResult Detail(int? id)
+        public IActionResult Info(int? id)
         {
             if (id == null)
             {
@@ -30,6 +31,7 @@ namespace FPTLibrary.Controllers
             return View(customer);
         }
 
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -42,6 +44,7 @@ namespace FPTLibrary.Controllers
             return View(customer);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, Store Owner")]
         public IActionResult Edit(Customer customer)
         {
             if (ModelState.IsValid)
@@ -52,6 +55,7 @@ namespace FPTLibrary.Controllers
             }
             return View(customer);
         }
+
 
         public IActionResult Delete(int? id)
         {
