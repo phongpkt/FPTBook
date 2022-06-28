@@ -15,6 +15,56 @@
     <Compile Remove="Data\Migrations\20220623161052_first.Designer.cs" />
     <Compile Remove="Data\Migrations\20220623161313_first.cs" />
     <Compile Remove="Data\Migrations\20220623161313_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220623161601_first.cs" />
+    <Compile Remove="Data\Migrations\20220623161601_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628113852_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628113852_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628120019_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628120019_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628121221_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628121221_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628122303_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628122303_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628123414_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628123414_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628124847_adduser.cs" />
+    <Compile Remove="Data\Migrations\20220628124847_adduser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628142426_edituser.cs" />
+    <Compile Remove="Data\Migrations\20220628142426_edituser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628143116_edituser.cs" />
+    <Compile Remove="Data\Migrations\20220628143116_edituser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628144143_edituser.cs" />
+    <Compile Remove="Data\Migrations\20220628144143_edituser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628150804_edituser.cs" />
+    <Compile Remove="Data\Migrations\20220628150804_edituser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628151751_edituser.cs" />
+    <Compile Remove="Data\Migrations\20220628151751_edituser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628154446_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628154446_almostthere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628154624_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628154624_almostthere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628155549_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628155549_almostthere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628160234_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628160234_almostthere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628160927_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628160927_almostthere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220628161453_almostthere.cs" />
+    <Compile Remove="Data\Migrations\20220628161453_almostthere.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Book\Book_Category.cshtml" />
+    <None Include="Views\Book\Create.cshtml" />
+    <None Include="Views\Book\Detail.cshtml" />
+    <None Include="Views\Book\Edit.cshtml" />
+    <None Include="Views\Book\Index.cshtml" />
+    <None Include="Views\Category\Create.cshtml" />
+    <None Include="Views\Category\Edit.cshtml" />
+    <None Include="Views\Category\Index.cshtml" />
+    <None Include="Views\Order\Create.cshtml" />
+    <None Include="Views\Order\Detail.cshtml" />
+    <None Include="Views\Order\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

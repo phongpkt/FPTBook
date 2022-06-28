@@ -3,26 +3,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FPTLibrary.Data.Migrations
 {
-    public partial class first : Migration
+    public partial class almostthere : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Admin",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Email = table.Column<string>(maxLength: 200, nullable: false),
-                    Image = table.Column<string>(nullable: false),
-                    Mobile = table.Column<string>(maxLength: 13, nullable: false),
-                    Password = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admin", x => x.Id);
-                });
+            migrationBuilder.AddColumn<string>(
+                name: "Image",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Name",
+                table: "AspNetUsers",
+                maxLength: 50,
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Roles",
+                table: "AspNetUsers",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Categories",
@@ -36,43 +37,6 @@ namespace FPTLibrary.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
-                    Image = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(maxLength: 200, nullable: false),
-                    Mobile = table.Column<string>(maxLength: 13, nullable: false),
-                    Address = table.Column<string>(maxLength: 200, nullable: false),
-                    Password = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Store_Owners",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Image = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(maxLength: 200, nullable: false),
-                    Mobile = table.Column<string>(maxLength: 13, nullable: false),
-                    Address = table.Column<string>(maxLength: 200, nullable: false),
-                    Password = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Store_Owners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,19 +65,52 @@ namespace FPTLibrary.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Admin",
-                columns: new[] { "Id", "Email", "Image", "Mobile", "Name", "Password" },
-                values: new object[] { 1, "admin@gmail.com", "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", "0321169923", "Admin", "admin@123" });
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(nullable: false),
+                    Payment = table.Column<int>(nullable: false),
+                    Order_Date = table.Column<DateTime>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    AspNetUsersId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_AspNetUsersId",
+                        column: x => x.AspNetUsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "ff0c5a03-2657-4393-94e0-6e7a5131fbe8", "Admin", "ADMIN" },
-                    { "2", "dee035fe-9d10-4018-b7e1-ebce200f2643", "Store Owner", "STORE OWNER" },
-                    { "3", "287d51a5-56e2-4045-abb3-57a59b6d5995", "Customer", "CUSTOMER" }
+                    { "1", "5d1de023-c296-4e83-9c27-299f003b34e3", "Admin", "ADMIN" },
+                    { "2", "1d24ea5d-0a3e-4880-a36a-c4e5e717304b", "Store Owner", "STORE OWNER" },
+                    { "3", "551c5186-5b99-41d7-9433-f83c2b5274ca", "Customer", "CUSTOMER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Roles", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "95dac70e-2e8b-4c07-88f9-6652570cbc35", 0, "5635c502-cbfb-43ea-98a0-58cba79038a5", "admin@gmail.com", false, "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", false, null, "Admin", null, null, null, "0321169923", false, "Admin", "659184ef-8cc5-4f7c-9cae-0b490e019342", false, null },
+                    { "74aebc4e-c1ee-4a08-b98d-762ad99cbeb0", 0, "6c6d980a-0d6f-4435-bfc9-96555eae2264", "customer@gmail.com", false, "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", false, null, "Customer", null, null, null, "0321333923", false, "Customer", "53ea6b52-54e4-4be9-ad82-2d654149f626", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -130,21 +127,6 @@ namespace FPTLibrary.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Customers",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "Image", "LastName", "Mobile", "Password" },
-                values: new object[,]
-                {
-                    { 1, "Tay Ho", "phamkhacthanhphong@gmail.com", "Phong", "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", "Pham", "0321169923", "phong" },
-                    { 2, "Nam Dinh", "vubinhchuong@gmail.com", "Chuong", "https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg", "Vu", "0324164953", "chuong" },
-                    { 3, "Nam Dinh", "phamhoanglong@gmail.com", "Long", "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", "Pham", "0324664553", "long" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Store_Owners",
-                columns: new[] { "Id", "Address", "Email", "Image", "Mobile", "Name", "Password" },
-                values: new object[] { 1, "Hanoi", "storeowner@gmail.com", "https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg", "0324664553", "StoreOwner", "storeowner@123" });
-
-            migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Author", "CategoryId", "Description", "Image", "Name", "Price", "Published_Date", "Quantity" },
                 values: new object[,]
@@ -158,25 +140,44 @@ namespace FPTLibrary.Data.Migrations
                     { 7, "Jeff Goldberg", 6, "The main subject of the book is the Big East Tournament championship game of 2001, although the book intersperses play by play coverage of the game with background information on the entire season, as well as commentary on the players, coaches and other aspects of the two programs. The game featured in the book was neither the first nor the last meeting of the two teams in the season.[3] In January, UConn played Notre Dame at Notre Dame. The UConn team was undefeated, and ranked number one in the country at the start of the game. Notre Dame won 92–76, remained undefeated, and moved from third to the number one ranking at the next poll.[4] Both teams would also meet in the semifinals of the NCAA Tournament, with Notre Dame prevailing and then going on to win the national championship. All of the meetings between the two teams that year were important games for each team, but the game in March had multiple story lines—a tournament championship at stake, a close game in which neither team led by more than eight points at any time, a devastating injury to one of the game's best players, and finally, a game that was decided by a single basket scored in the final moments, by one of the best players in the sport, Sue Bird.", "https://upload.wikimedia.org/wikipedia/en/a/a3/Bird_at_the_Buzzer_cover.jpg", "Bird at the Buzzer", 200.0, new DateTime(2011, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 15 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "AspNetUsersId", "BookId", "Order_Date", "Payment", "Quantity" },
+                values: new object[] { 2, null, 2, new DateTime(2022, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, 20 });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "AspNetUsersId", "BookId", "Order_Date", "Payment", "Quantity" },
+                values: new object[] { 1, null, 1, new DateTime(2021, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "AspNetUsersId", "BookId", "Order_Date", "Payment", "Quantity" },
+                values: new object[] { 3, null, 5, new DateTime(2022, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 30 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",
                 table: "Books",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AspNetUsersId",
+                table: "Orders",
+                column: "AspNetUsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_BookId",
+                table: "Orders",
+                column: "BookId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admin");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Books");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Store_Owners");
 
             migrationBuilder.DropTable(
                 name: "Categories");
@@ -195,6 +196,28 @@ namespace FPTLibrary.Data.Migrations
                 table: "AspNetRoles",
                 keyColumn: "Id",
                 keyValue: "3");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "74aebc4e-c1ee-4a08-b98d-762ad99cbeb0");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "95dac70e-2e8b-4c07-88f9-6652570cbc35");
+
+            migrationBuilder.DropColumn(
+                name: "Image",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Name",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Roles",
+                table: "AspNetUsers");
         }
     }
 }

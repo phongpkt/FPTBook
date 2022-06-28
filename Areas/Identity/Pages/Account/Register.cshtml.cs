@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using FPTLibrary.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,14 +21,14 @@ namespace FPTLibrary.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<AspNetUser> _signInManager;
+        private readonly UserManager<AspNetUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         public List<SelectListItem> Roles { get; set; }
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<AspNetUser> userManager,
+            SignInManager<AspNetUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -53,6 +54,13 @@ namespace FPTLibrary.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required(ErrorMessage = "This field cannot be empty!")]
+            [MinLength(2, ErrorMessage = "The name length must be longer than 2!")]
+            [MaxLength(50, ErrorMessage = "The name length exceed maximum required characters!")]
+            public string Name { get; set; }
+            [Required(ErrorMessage = "This field cannot be empty!")]
+            [Url]
+            public string Image { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -86,7 +94,13 @@ namespace FPTLibrary.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new AspNetUser { 
+                    Name = Input.Name,
+                    Image = Input.Image,
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    Roles = Input.UserRole
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

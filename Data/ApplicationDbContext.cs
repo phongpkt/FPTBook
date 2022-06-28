@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FPTLibrary.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext <AspNetUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,40 +16,31 @@ namespace FPTLibrary.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Store_Owner> Store_Owners { get; set; }
-        public DbSet<Admin> Admin { get; set; }
+        public DbSet<Order> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             SeedBook(builder);
             SeedCategory(builder);
-            SeedCustomer(builder);
-            SeedAdmin(builder);
-            SeedStore_Owner(builder);
+            SeedUser(builder);
             SeedRole(builder);
-        }
-        private void SeedStore_Owner(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Store_Owner>().HasData(
-                new Store_Owner { Id = 1, Name = "StoreOwner", Image = "https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg", Email = "storeowner@gmail.com", Mobile = "0324664553", Address = "Hanoi", Password = "storeowner@123" }
-            );
+            SeedOrder(builder);
         }
 
-        private void SeedAdmin(ModelBuilder modelBuilder)
+        private void SeedUser(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Admin>().HasData(
-                new Admin { Id = 1, Name = "Admin", Image = "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", Email = "admin@gmail.com", Mobile = "0321169923", Password = "admin@123" }
-            );
+            modelBuilder.Entity<AspNetUser>().HasData(
+                new AspNetUser { Name = "Admin", Image = "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", Email = "admin@gmail.com", PhoneNumber = "0321169923", Roles = "Admin" },
+                new AspNetUser { Name = "Customer", Image = "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", Email = "customer@gmail.com", PhoneNumber = "0321333923", Roles = "Customer" }
+            );  ;
         }
-
-        private void SeedCustomer(ModelBuilder modelBuilder)
+        public void SeedOrder(ModelBuilder builder)
         {
-            modelBuilder.Entity<Customer>().HasData(
-                new Customer { Id = 1, FirstName = "Phong", LastName = "Pham", Image = "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", Email = "phamkhacthanhphong@gmail.com", Mobile = "0321169923", Address = "Tay Ho", Password = "phong" },
-                new Customer { Id = 2, FirstName = "Chuong", LastName = "Vu", Image = "https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg", Email = "vubinhchuong@gmail.com", Mobile = "0324164953", Address = "Nam Dinh", Password = "chuong" },
-                new Customer { Id = 3, FirstName = "Long", LastName = "Pham", Image = "https://guantanamocity.org/wp-content/uploads/2020/12/huong-dan-tao-anh-dai-dien-hoat-hinh-tren-facebook-cach-tao-avatar-facebook-1.png", Email = "phamhoanglong@gmail.com", Mobile = "0324664553", Address = "Nam Dinh", Password = "long" }
-            );
+            builder.Entity<Order>().HasData(
+                new Order { Id = 1, BookId = 1, Quantity = 2, Order_Date = DateTime.Parse("2021-10-12"), Payment = Payment.Cash },
+                new Order { Id = 2, BookId = 2, Quantity = 20, Order_Date = DateTime.Parse("2022-01-02"), Payment = Payment.Visa },
+                new Order { Id = 3, BookId = 5, Quantity = 30, Order_Date = DateTime.Parse("2022-03-05"), Payment = Payment.Mastercard }
+                );
         }
         private void SeedRole(ModelBuilder modelBuilder)
         {

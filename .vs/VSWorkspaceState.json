@@ -1,12 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Controllers",
-    "\\Models",
-    "\\Views",
-    "\\Views\\Admin",
-    "\\Views\\Customer",
-    "\\Views\\Shared"
+    ""
   ],
   "SelectedNode": "\\FPTLibrary.sln",
   "PreviewInSolutionExplorer": false

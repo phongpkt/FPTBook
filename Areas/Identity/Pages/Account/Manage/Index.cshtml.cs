@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FPTLibrary.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,12 +12,12 @@ namespace FPTLibrary.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AspNetUser> _userManager;
+        private readonly SignInManager<AspNetUser> _signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<AspNetUser> userManager,
+            SignInManager<AspNetUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,16 +33,20 @@ namespace FPTLibrary.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "Fullname")]
+            public string Name { get; set; }
+            [Url]
+            [Display(Name = "Image")]
+            public string Image { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(AspNetUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
             Username = userName;
 
             Input = new InputModel
@@ -57,7 +62,6 @@ namespace FPTLibrary.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
             await LoadAsync(user);
             return Page();
         }
