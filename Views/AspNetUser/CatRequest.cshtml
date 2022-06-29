@@ -9,11 +9,11 @@
     <title>Category Request</title>
 </head>
 <body>
-<center>
-    <div class="container col-md-8 text-center mt-3">
+ <div class="table">
     <h1 class="text text-danger">Category Request</h1>
     <table class="table-bordered">
         <tr>
+            <th>Category Id</th>
             <th>Category Name</th>
             <th>Category Image</th>
             <th>Actions</th>
@@ -23,7 +23,9 @@
                 <tr>
                     <td>@category.Id</td>
                     <td>@category.Name</td>
-                    <td>@category.Image</td>
+                    <td>
+                        <img src="@category.Image" width="90" height="120">
+                     </td>
                     <td>
                         <input class="btn btn-primary" type="submit" value="Approved" />
                         <input class="btn btn-danger" type="submit" value="Denied" />
@@ -31,7 +33,6 @@
                 </tr>
             }
     </table>
-    </div>
-</center>
+</div>
 </body>
 </html>

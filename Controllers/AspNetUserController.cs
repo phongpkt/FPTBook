@@ -34,8 +34,22 @@ namespace FPTLibrary.Controllers
                 .FirstOrDefault(u => u.Id == id);
             return View(user);
         }
+        /*[HttpGet]
+        public async Task<IActionResult> Index(string filterRole)
+        {
+            var roles = context.Users.ToList();
+            ViewBag.Users = roles;
+            ViewData["GetUser"] = filterRole;
+            var query = from item in context.Users select item;
+            if (!string.IsNullOrEmpty(filterRole))
+            {
+                query = query.Where(b => b.Roles.Contains(filterRole));
+            }
+            return View(await query.AsNoTracking().ToListAsync());
+        }*/
+
         [HttpGet]
-        public async Task<IActionResult> Index(string userSearch)
+        public async Task<IActionResult> IndexSearch(string userSearch)
         {
             ViewData["GetUser"] = userSearch;
             var query = from item in context.Users select item;
