@@ -20,18 +20,6 @@
             <input type="submit" value="Search" class="btn btn-primary" />
         </form>
        <a id="add" class="btn btn-warning" asp-action="CatRequest">Category Request</a><br />
-       @*<label>Select role</label>
-        <form id="search" method="get" asp-action="Index">
-            <select class="form-control" style="width: 200px; padding: 5px">
-               <option>Select Role</option>
-                @foreach(var user in ViewBag.Users)
-                {
-                    <option value="@ViewData["GetRole"]" name="filterRole">@user.Roles</option>
-                }
-            </select>
-            <input type="submit" value="Search" class="btn btn-primary" />
-            <br />
-        </form>*@
    </div>
    <div class="user">
        <h5>Admin:
